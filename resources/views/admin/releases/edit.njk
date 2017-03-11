@@ -1,0 +1,35 @@
+{% extends '../master' %}
+{% set page = 'Edit Release' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-6">
+      <form action="/admin/releases/edit" class="form" method="POST">
+        <div class="form-group">
+          <label for="version">Version</label>
+          <input type="text" id="version" class="form-control" name="version" value="{{ release.version }}">
+        </div>
+        <div class="form-group">
+          <label for="path">File Path</label>
+          <input type="text" id="path" class="form-control" name="path" value="{{ release.file }}">
+        </div>
+        <div class="form-group">
+          <label for="changelog">Changelog</label>
+          <textarea name="changelog" id="changelog" cols="30" rows="10" class="form-control">
+            {{ release.changelog | safe }}
+          </textarea>
+        </div>
+
+        <div class="form-group clearfix">
+          <div class="pull-right">
+            <input type="submit" class="btn btn-success" value="Save">
+          </div>
+        </div>
+
+        <input type="hidden" name="id" value="{{ release.id }}">
+
+        {{ csrfField }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

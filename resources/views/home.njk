@@ -1,0 +1,178 @@
+{% extends 'master' %}
+
+{% block content %}
+<section class="hero is-blue is-medium">
+  <div class="hero-head">
+    {% include 'partials/navbar' %}
+  </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Beta Sniper</h1>
+      <h2 class="subtitle">The best client sniper on the market</h2>
+    </div>
+  </div>
+</section>
+
+<br />
+
+<div class="container">
+  <div class="box">
+    Great news! Version {{ releases[0].version }} has been released
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Purchase</h1>
+      <hr />
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Downloads</h1>
+      <hr />
+    </div>
+
+    {% if error %}
+      <div class="notification is-danger">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <div class="columns">
+      {% for release in releases %}
+        <div class="column is-three-quarters {{ 'active' if loop.index === 1 }}" data-version="{{ release.version }}">
+          <div class="card display-block">
+            <header class="card-header">
+              <p class="card-header-title">Version {{ release.version }} Changelog</p>
+            </header>
+            <div class="card-content content">
+              {{ release.changelog | safe }}
+            </div>
+
+            <footer class="card-footer">
+              <div class="card-footer-item">
+                <form action="/download" method="POST" class="download-form">
+                  <div class="control is-grouped">
+                    <div class="control-label">
+                      <label for="license">License</label>
+                    </div>
+                    <p class="control is-expanded">
+                      <input type="text" class="input" id="license" name="key" placeholder="a4c1b2bc-2396-46ba-a43b-94f5e2fb1076" autocomplete="false">
+                    </p>
+                    <p class="control">
+                      <button role="submit" class="button is-info">Download</button>
+                    </p>
+                  </div>
+
+                  <input type="hidden" name="version" value="{{ release.version }}">
+
+                  {{ csrfField }}
+                </form>
+              </div>
+              <div class="card-footer-item"><p>You are downloading version <strong>{{ release.version }}</strong></p></div>
+              {# <a href="#" class="card-footer-item">Download</a> #}
+            </footer>
+          </div>
+        </div>
+      {% endfor %}
+
+      {# <div class="column is-three-quarters">
+        <div class="card display-block">
+          <header class="card-header">
+            <p class="card-header-title">Version 1.5 Changelog</p>
+          </header>
+          <div class="card-content content">
+            <strong>[ADDED]</strong>
+            <ul>
+              <li>Proxy Recycling | Use each proxy 5 times</li>
+              <li>Option to show concurrent messages</li>
+              <li>Automatic duplicate proxy removal</li>
+            </ul>
+
+            <strong>[FIXED]</strong>
+            <ul>
+              <li>Invalid snipe result</li>
+            </ul>
+
+            <strong>[IMPROVED]</strong>
+            <ul>
+              <li>Configuration file layout</li>
+            </ul>
+          </div>
+
+
+          <footer class="card-footer">
+            <div class="card-footer-item">
+              <form action="/download">
+                <div class="control is-grouped">
+                  <div class="control-label">
+                    <label for="license">License</label>
+                  </div>
+                  <p class="control is-expanded">
+                    <input type="text" class="input" id="license" placeholder="a4c1b2bc-2396-46ba-a43b-94f5e2fb1076">
+                  </p>
+                  <p class="control">
+                    <button role="submit" class="button is-info">Download</button>
+                  </p>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer-item"><p>You are downloading version <strong>1.5</strong></p></div>
+          </footer>
+        </div>
+      </div> #}
+
+      <div class="column is-one-quarter">
+        <aside class="menu">
+          <p class="menu-label">Versions</p>
+          <ul class="menu-list">
+            {% for release in releases %}
+              <li>
+                <a href="#v{{ release.version }}" class="{{ 'is-active' if loop.index === 1 }}">{{ release.version }} {% if loop.index === 1 %}
+                  <span class="tag is-info is-version-tag">Latest</span>
+                {% endif %}</a>
+              </li>
+            {% endfor %}
+            {# <li>
+              <a href="#" class="is-active">
+                <p>1.5 <span class="tag is-info is-version-tag">Latest</span></p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>1.4</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>1.3</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>1.2</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>1.1</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>1.0</p>
+              </a>
+            </li> #}
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends '../master' %}
+{% set page = 'Create Key' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-6">
+      <form action="/admin/keys/create" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+          <label for="aliases">Aliases</label>
+          <textarea name="aliases" id="aliases" class="form-control" cols="30" rows="10" placeholder="Seperate with a new line"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="ips">IPS</label>
+          <textarea name="ips" id="ips" class="form-control" cols="30" rows="10" placeholder="Seperate with a new line"></textarea>
+        </div>
+
+        <div class="form-group clearfix">
+          <div class="pull-right">
+            <input type="submit" class="btn btn-success" value="Create">
+          </div>
+        </div>
+
+        {{ csrfField }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

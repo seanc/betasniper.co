@@ -1,0 +1,48 @@
+a {
+  color: #279DDD !important;
+}
+a:hover {
+  color: #208fcb !important;
+}
+
+.nav {
+  padding: 20px 0;
+  background-color: #279DDD;
+}
+.nav .nav-logo {
+  width: 60px;
+  filter: brightness(0) invert(1);
+}
+.nav .nav-item {
+  color: #fff !important;
+}
+.nav .nav-item:hover {
+  color: #eee !important;
+}
+
+.hero.is-blue {
+  background-color: #279DDD;
+}
+.hero.is-blue h1, .hero.is-blue h2, .hero.is-blue p, .hero.is-blue a {
+  color: #fff;
+}
+
+.tag.is-version-tag {
+  vertical-align: middle;
+}
+
+.is-active {
+  background-color: #eee !important;
+}
+
+#license {
+  width: 300px;
+}
+
+.column[data-version] {
+  display: none;
+}
+
+.column[data-version].active {
+  display: block;
+}

@@ -1,0 +1,31 @@
+{% extends '../master' %}
+{% set page = 'Create Release' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-6">
+      <form action="/admin/releases/create" class="form" method="POST">
+        <div class="form-group">
+          <label for="version">Version</label>
+          <input type="text" id="version" class="form-control" name="version" placeholder="1.2.3">
+        </div>
+        <div class="form-group">
+          <label for="path">File Path</label>
+          <input type="text" id="path" class="form-control" name="path" placeholder="/home/sean/porn/beta.zip">
+        </div>
+        <div class="form-group">
+          <label for="changelog">Changelog</label>
+          <textarea name="changelog" id="changelog" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group clearfix">
+          <div class="pull-right">
+            <input type="submit" class="btn btn-success" value="Create">
+          </div>
+        </div>
+
+        {{ csrfField }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

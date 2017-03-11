@@ -1,0 +1,47 @@
+{% extends '../master' %}
+{% set page = 'All Keys' %}
+
+{% block content %}
+  <style>
+  .fixed-table-loading { display: none }
+  .fixed-table-toolbar { transform: translateY(-10px) }
+  </style>
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="toolbar">
+        <select class="form-control">
+          <option value="">Export Basic</option>
+          <option value="all">Export All</option>
+          <option value="selected">Export Selected</option>
+        </select>
+      </div>
+      <table class="table table-bordered table-hover" id="table"
+        data-toggle="table"
+        data-search="true"
+        data-show-export="true"
+        data-escape="false"
+        data-toolbar="#toolbar">
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>IPS</th>
+          <th>Key</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          {% for key in keys %}
+            <tr>
+              <td>{{ key.id }}</td>
+              <td>{{ key.name }}</td>
+              <td>{{ key.ips }}</td>
+              <td>{{ key.key }}</td>
+              <td>
+                <a href="{{ 'keys:edit:get' | route({ id: key.id }) }}" class="btn btn-warning btn-block">Edit</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
