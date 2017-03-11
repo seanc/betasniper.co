@@ -1,30 +1,11 @@
 (function($) {
-  // $('.download-form').on('submit', function (e) {
-  //   e.preventDefault()
-  //
-  //   var $form = $(e.target)
-  //   var $button = $form.find('button[type=submit]')
-  //   var data = $form.serialize()
-  //
-  //   $button.addClass('is-loading')
-  //
-  //   $.ajax({
-  //     url: '/download',
-  //     type: 'POST',
-  //     data: data
-  //   }).always(function() {
-  //     $button.removeClass('is-loading')
-  //   }).done(function(data) {
-  //     console.log(data, 'success')
-  //   }).fail(function(data) {
-  //     console.log(data, 'fail')
-  //   })
-  // })
-
   $(window).on('hashchange', function() {
-    var hash = window.location.hash.slice(1)
-    var version = hash.slice(1)
-    switchVersion(version)
+    var hash = window.location.hash
+    var signature = hash.slice(1)
+    if (signature.charAt(0) === 'v') {
+      var version = signature.slice(1)
+      switchVersion(version)
+    }
   })
 
   function switchVersion(version) {
@@ -36,5 +17,14 @@
     $('a[href="#v'+ version +'"]').parent().addClass('is-active')
   }
 
-  if (window.location.hash) switchVersion(window.location.hash.slice(1).slice(1))
+  var hash = window.location.hash
+  if (hash) {
+    var signature = hash.slice(1)
+    if (signature.charAt(0) === 'v') {
+      var version = signature.slice(1)
+      switchVersion(version)
+    }
+  }
+
+  $('.anchor-scroll').anchorScroll()
 })(jQuery)

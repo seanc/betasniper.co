@@ -22,7 +22,7 @@ class DownloadController {
 
       res.status(200).attachment(file, `BetaSniper_V${release.version}.${ext}`)
     } catch (e) {
-      console.log(e)
+      console.log(e.message)
 
       if (e.name === 'ModelNotFoundException') {
         yield res.sendView('home', { releases, error: 'Unable to find version or license' })
