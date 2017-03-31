@@ -32,8 +32,8 @@
           {% for key in keys %}
             <tr>
               <td>{{ key.id }}</td>
-              <td>{{ key.name }}</td>
-              <td>{{ key.ips }}</td>
+              <td>{{ key.name | safe}}</td>
+              <td>{{ key.ips | safe}}</td>
               <td>{{ key.key }}</td>
               <td>
                 <a href="{{ 'keys:edit:get' | route({ id: key.id }) }}" class="btn btn-warning btn-block">Edit</a>

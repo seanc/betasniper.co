@@ -56,6 +56,18 @@ module.exports = {
     }
   },
 
+  // License Server
+  license_mysql: {
+    client: 'mysql',
+    connection: {
+      host: Env.get('LICENSE_DB_HOST', 'localhost'),
+      port: Env.get('LICECNSE_DB_PORT', ''),
+      user: Env.get('LICENSE_DB_USER', 'root'),
+      password: Env.get('LICENSE_DB_PASSWORD', ''),
+      database: Env.get('LICENSE_DB_DATABASE', 'adonis')
+    }
+  },
+
   /*
   |--------------------------------------------------------------------------
   | PostgreSQL

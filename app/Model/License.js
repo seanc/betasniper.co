@@ -8,6 +8,10 @@ class License extends Lucid {
     return 'keys'
   }
 
+  static get connection () {
+    return 'license_mysql'
+  }
+
 }
 
 module.exports = License

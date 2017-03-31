@@ -7,7 +7,13 @@ class KeysController {
 
   * index(request, response) {
     const keysRaw = yield Key.all()
-    const keys = keysRaw.toJSON()
+    let keys = keysRaw.toJSON()
+
+    keys = keys.map(key => {
+      key.name = key.name.split('/').join('<br>')
+      key.ips = key.ips.split(';').filter(ip => ip).join('<br>')
+      return key
+    })
 
     yield response.sendView('admin/keys/index', { keys })
   }
