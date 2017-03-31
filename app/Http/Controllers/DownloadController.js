@@ -25,12 +25,19 @@ class DownloadController {
       console.log(e.message)
 
       if (e.name === 'ModelNotFoundException') {
-        yield res.sendView('home', { releases, error: 'Unable to find version or license' })
+        yield req
+          .withAll()
+          .andWith({ error: 'Unable to find version or license' })
+          .flash()
+        res.redirect('back')
         return
       }
 
-      yield res.sendView('home', { releases, error: 'An error occured' })
-
+      yield req
+        .withAll()
+        .andWith({ error: 'An error occurred' })
+        .flash()
+      res.redirect('back')
     }
   }
 

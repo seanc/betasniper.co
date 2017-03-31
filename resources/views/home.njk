@@ -45,9 +45,9 @@
       <hr />
     </div>
 
-    {% if error %}
+    {% if old('error') %}
       <div class="notification is-danger">
-        {{ error }}
+        {{ old('error') }}
       </div>
     {% endif %}
 
@@ -70,7 +70,7 @@
                       <label for="license">License</label>
                     </div>
                     <p class="control is-expanded">
-                      <input type="text" class="input" id="license" name="key" placeholder="a4c1b2bc-2396-46ba-a43b-94f5e2fb1076" autocomplete="false">
+                      <input type="text" class="input" id="license" name="key" placeholder="a4c1b2bc-2396-46ba-a43b-94f5e2fb1076" autocomplete="false" value="{{ old('key') }}">
                     </p>
                     <p class="control">
                       <button role="submit" class="button is-info">Download</button>

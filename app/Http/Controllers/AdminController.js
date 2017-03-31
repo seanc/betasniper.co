@@ -12,7 +12,7 @@ class AdminController {
       // TODO: write email
     } catch (e) {
       yield req.withOut('password').andWith({ error: 'Incorrect username or password' }).flash()
-      yield res.sendView('admin/login')
+      res.redirect('back')
     }
   }
 
